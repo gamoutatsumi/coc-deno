@@ -74,7 +74,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   );
   if (tsserver) {
     await tsserver.activate();
-    synchronizeConfiguration(tsserver.exports);
+    // @ts-ignore
+    synchronizeConfiguration(tsserver.result);
   }
 
   const command = workspace.getConfiguration(EXTENSION_NS).get("path", "deno");
@@ -135,7 +136,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
           { settings: null },
         );
         if (tsserver) {
-          synchronizeConfiguration(tsserver.exports);
+          // @ts-ignore
+          synchronizeConfiguration(tsserver.result);
         }
       }
     }),
